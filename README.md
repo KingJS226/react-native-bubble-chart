@@ -8,6 +8,10 @@ An easy-to-use customizable bubble animation chart, similar to the Apple Music g
 * Typescript Sup  port
 * Customizable
 
+## iOS Example
+
+![plot](./example/assets/sample.png)
+
 ## Installation
 
 ```sh
