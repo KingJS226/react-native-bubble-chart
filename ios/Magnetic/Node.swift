@@ -39,6 +39,7 @@ import SpriteKit
 
     open var value: CGFloat = 0 {
         didSet {
+          guard value != 0 else { return self.valueLabel = nil }
           self.valueLabel = "\(value)"
           self.valueLabel = self.prefix + self.valueLabel!
           self.valueLabel = self.valueLabel! + self.surfix
