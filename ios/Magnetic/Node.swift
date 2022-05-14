@@ -379,7 +379,9 @@ import SpriteKit
      */
     public func resize() {
         guard scaleToFitContent else { return }
-        let iconSize = iconSize ?? 0
+
+        var iconHeight: CGFloat = 0
+        if icon != nil && iconSize != nil { iconHeight = iconSize! }
         var titleFontSize: CGSize = CGSize(width: 0, height: 0)
         var valueFontSize: CGSize = CGSize(width: 0, height: 0)
         var subTitleFontSize: CGSize = CGSize(width: 0, height: 0)
@@ -402,8 +404,8 @@ import SpriteKit
             subTitleFontSize = (subTitle! as NSString).size(withAttributes: fontAttributes)
         }
         
-        let width = max(iconSize, valueFontSize.width, titleFontSize.width, subTitleFontSize.width)
-        let height = iconSize + valueFontSize.height + titleFontSize.height + subTitleFontSize.height
+        let width = max(iconHeight, valueFontSize.width, titleFontSize.width, subTitleFontSize.width)
+        let height = iconHeight + valueFontSize.height + titleFontSize.height + subTitleFontSize.height
 
         let distance = hypot(width / 2, height / 2)
         let radius = distance + 15
@@ -459,7 +461,7 @@ import SpriteKit
         self.physicsBody?.isDynamic = false
         var currentPosition = self.position
         let percentChild = self.childNode(withName: "percent")
-        if percentChild !== nil {
+        if percentChild != nil {
             currentPosition = (percentChild?.position)!
             self.removeChildren(in: [percentChild!])
         }

@@ -45,11 +45,11 @@ import SpriteKit
         var titleStack = Stack<String>()
         var subTitleStack = Stack<String>()
         
-        if icon != nil, iconSize != nil {
+        if icon != nil && iconSize != nil {
             iconNode = SKShapeNode(rect: CGRect(x: self.frame.width / 2, y: self.frame.height / 2, width: iconSize!, height: iconSize!))
-            iconNode?.fillTexture = icon.map { SKTexture(image: $0.aspectFill(CGSize(width: iconSize!, height: iconSize!))) }
             iconNode?.fillColor = .white
-            iconNode?.strokeColor = .clear
+            iconNode?.fillTexture = icon.map { SKTexture(image: $0.aspectFill(CGSize(width: iconSize!, height: iconSize!))) }
+            iconNode?.strokeColor = UIColor(white: 1, alpha: 0)
             self.addChild(iconNode!)
         }
 
@@ -101,16 +101,26 @@ import SpriteKit
         let valueLines = valueStack.values.map { $0.joined(separator: separator ?? "") }
         let titleLines = titleStack.values.map { $0.joined(separator: separator ?? "") }
         let subTitleLines = subTitleStack.values.map { $0.joined(separator: separator ?? "") }
-        var valueHeight: CGFloat = CGFloat(valueLines.count) * (lineHeight ?? valueFontSize)
-        var titleHeight: CGFloat = CGFloat(titleLines.count) * (lineHeight ?? titleFontSize)
-        let subTitleHeight: CGFloat = CGFloat(subTitleLines.count) * (lineHeight ?? subTitleFontSize)
-        var iconHeight = iconSize ?? 0
+        var valueLineCount = 0
+        var titleLineCount = 0
+        var subTitleLineCount = 0
         
-        if valueLines.count != 0 && (titleLines.count != 0 || subTitleLines.count != 0) {
+        if value != nil { valueLineCount = valueLines.count }
+        if title != nil { titleLineCount = titleLines.count }
+        if subTitle != nil { subTitleLineCount = subTitleLines.count }
+        
+        var valueHeight: CGFloat = CGFloat(valueLineCount) * (lineHeight ?? valueFontSize)
+        var titleHeight: CGFloat = CGFloat(titleLineCount) * (lineHeight ?? titleFontSize)
+        let subTitleHeight: CGFloat = CGFloat(subTitleLineCount) * (lineHeight ?? subTitleFontSize)
+        var iconHeight: CGFloat = 0
+        
+        if icon != nil && iconSize != nil { iconHeight = iconSize! }
+        
+        if valueLineCount != 0 && (titleLineCount != 0 || subTitleLineCount != 0) {
             valueHeight = valueHeight + 2
         }
         
-        if subTitleLines.count != 0 && (valueLines.count != 0 || titleLines.count != 0) {
+        if subTitleLineCount != 0 && (valueLineCount != 0 || titleLineCount != 0) {
             titleHeight = titleHeight + 2
         }
         
