@@ -1,6 +1,6 @@
 {
   "name": "react-native-bubble-chart",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "An easy-to-use customizable bubble animation chart, similar to the Apple Music genre selection",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
