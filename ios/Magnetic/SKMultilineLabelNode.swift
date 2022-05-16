@@ -54,7 +54,7 @@ import SpriteKit
         }
 
         if value != nil {
-            let value = value!
+            let value = self.value!
             var sizingLabel = makeSizingLabel()
             let words = separator.map { value.components(separatedBy: $0) } ?? value.map { String($0) }
             for (index, word) in words.enumerated() {
@@ -69,7 +69,7 @@ import SpriteKit
         }
         
         if title != nil {
-            let title = title!
+            let title = self.title!
             var sizingLabel = makeSizingLabel()
             let words = separator.map { title.components(separatedBy: $0) } ?? title.map { String($0) }
             for (index, word) in words.enumerated() {
@@ -84,7 +84,7 @@ import SpriteKit
         }
         
         if subTitle != nil {
-            let subTitle = subTitle!
+            let subTitle = self.subTitle!
             var sizingLabel = makeSizingLabel()
             let words = separator.map { subTitle.components(separatedBy: $0) } ?? subTitle.map { String($0) }
             for (index, word) in words.enumerated() {

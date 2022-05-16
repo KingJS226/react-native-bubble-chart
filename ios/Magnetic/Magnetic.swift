@@ -285,7 +285,7 @@ extension Magnetic {
         let x = location.x - previous.x
         let y = location.y - previous.y
         
-        let node = node(at: previous)
+        let node = self.node(at: previous)
         let distance = location.distance(from: previous)
         let acceleration: CGFloat = pow(distance, 1/3)
         let direction = CGVector(dx: 1, dy: 1)
